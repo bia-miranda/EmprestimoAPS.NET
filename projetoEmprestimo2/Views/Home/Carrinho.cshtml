@@ -1,0 +1,31 @@
+﻿@model projetoEmprestimo2.Models.modelEmprestimo
+
+@{
+    ViewBag.Title = "Carrinho";
+}
+
+<h2>Carrinho</h2>
+
+<table class="table">
+    <tr>
+        <th>Livros</th>
+        <br />
+    </tr>
+
+    @foreach (var item in Model.ItensPedido)
+    {
+        <tr>
+            <th>@item.NomeLivro</th>
+            <td><img alt="Thumbnail [300x300]" style="width 70px; height: 70px;" src="@item.Imagem" /></td>
+            <td>@Html.ActionLink("Remover", "ExcluirItem", new { id = item.ItemPedidoID }, null)</td>
+        </tr>
+    }
+
+</table>
+
+<table>
+    <td>@Html.ActionLink("Continuar comprando", "Index", "Home", new { @class = "btn btn-outline-primary" })</td>
+    <br />
+    <td>@Html.ActionLink("Finalizar", "SalvarCarrinho", "Home", new { @class = "btn btn-success" })</td>
+
+</table>

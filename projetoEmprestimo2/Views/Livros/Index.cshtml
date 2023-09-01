@@ -1,0 +1,44 @@
+﻿@model projetoEmprestimo2.Models.modelLivro
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cadastrar novo livro</h2>
+
+@using (Html.BeginForm("Index", "Livros", FormMethod.Post, new {enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.NomeLivro, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NomeLivro, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NomeLivro, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group center">
+        <div><label class="control-label col-md-2" for="file">Capa Livro</label></div>
+        <div class="col-md-offset-2 col-md-10">
+            <input type="file" name="file" id="file" />
+        </div>
+    </div>
+
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Salvar produto" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    } 
+
